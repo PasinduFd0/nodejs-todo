@@ -54,7 +54,6 @@ pipeline {
 	  }
 	}
 
-
 	stage('Smoke Test') {
 	  steps {
 		sh '''
@@ -62,19 +61,20 @@ pipeline {
 		  MAX_RETRIES=10
 		  RETRY_DELAY=3
 		  for i in $(seq 1 $MAX_RETRIES); do
-			STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/)
+			STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/ || true)
 			if [ "$STATUS" = "200" ]; then
-			  echo "✅ App is up (HTTP 200)"
+			  echo "✅ Smoke test passed (HTTP 200)"
 			  exit 0
 			fi
 			echo "Attempt $i/$MAX_RETRIES: App not ready (status=$STATUS), retrying in $RETRY_DELAY sec..."
 			sleep $RETRY_DELAY
 		  done
-		  echo "❌ Smoke test failed after $MAX_RETRIES attempts."
+		  echo "❌ Smoke test failed after $MAX_RETRIES attempts"
 		  exit 1
 		'''
 	  }
 	}
+
 
   }
 
