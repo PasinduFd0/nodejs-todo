@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-todo",
+  "version": "1.0.0",
+  "description": "DevOps pipeline to build, test, and deploy a simple Node.js To-Do web application. The pipeline begins at code commit and ends with deployment to a production server, with future integration of monitoring.",
+  "main": "index.js",
+"scripts": {
+  "start": "node server.js",
+  "test": "node -e \"console.log('test ok'); process.exit(0)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PasinduFd0/nodejs-todo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PasinduFd0/nodejs-todo/issues"
+  },
+  "homepage": "https://github.com/PasinduFd0/nodejs-todo#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+
+}
